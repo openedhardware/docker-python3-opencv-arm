@@ -8,10 +8,10 @@ RUN pip install numpy
 
 WORKDIR /
 ENV OPENCV_VERSION="4.1.1"
-RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
-    && unzip ${OPENCV_VERSION}.zip \
-    && mkdir /opencv-${OPENCV_VERSION}/cmake_binary \
-    && cd /opencv-${OPENCV_VERSION}/cmake_binary \
+RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && unzip ${OPENCV_VERSION}.zip \
+    && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip \
+    && unzip opencv_contrib.zip \
+    && mkdir /opencv-${OPENCV_VERSION}/cmake_binary && cd /opencv-${OPENCV_VERSION}/cmake_binary \
     && cmake -DBUILD_TIFF=ON \
       -DBUILD_opencv_java=OFF \
       -DWITH_CUDA=OFF \
@@ -24,6 +24,7 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
       -DBUILD_TESTS=OFF \
       -DBUILD_PERF_TESTS=OFF \
       -DCMAKE_BUILD_TYPE=RELEASE \
+      -DOPENCV_EXTRA_MODULES_PATH=/opencv_contrib-${OPENCV_VERSION}/modules \
       -DCMAKE_INSTALL_PREFIX=$(python3.7 -c "import sys; print(sys.prefix)") \
       -DPYTHON_EXECUTABLE=$(which python3.7) \
       -DPYTHON_INCLUDE_DIR=$(python3.7 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
