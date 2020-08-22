@@ -33,6 +33,6 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && unzip
     && make install \
     && rm /${OPENCV_VERSION}.zip \
     && rm -r /opencv-${OPENCV_VERSION}
-RUN ln -s /usr/local/lib/python3.7/site-packages/cv2/python-3.7/cv2.cpython-37m-armv7l-linux-gnu.so /usr/local/lib/python3.7/site-packages/cv2.so
+RUN ln -s /usr/local/lib/python3.7/site-packages/cv2/python-3.7/cv2.cpython-37m-arm-linux-gnueabihf.so /usr/local/lib/python3.7/site-packages/cv2.so
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp*
