@@ -17,9 +17,9 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && unzip
       -DWITH_CUDA=OFF \
       -DWITH_OPENGL=ON \
       -DWITH_OPENCL=ON \
-      -DWITH_IPP=ON \
-      -DWITH_TBB=ON \
-      -DWITH_EIGEN=ON \
+      -DWITH_IPP=OFF \
+      -DWITH_TBB=OFF \
+      -DWITH_EIGEN=OFF \
       -DWITH_V4L=ON \
       -DBUILD_TESTS=OFF \
       -DBUILD_PERF_TESTS=OFF \
